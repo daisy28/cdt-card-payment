@@ -1,69 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Payment Page</title>
-     <link rel="stylesheet" href="/css/style.min.css">
-</head>
-<body>
-     <main class="main">
-          <div class="card_container">
-               <div class="payment_card">
-                    <div class="card_details_one">
-                         <img src="/assets/20230829_130215.jpg" alt="card-badge" class="class_badge">
-                         <p>visa</p>
-                    </div>
-                    <div class="card_details_two">
-                         <div>
-                              <p class="card_owner_name">card holder</p>
-                              <p>ubah gloria</p>
-                         </div>
-
-                         <div>
-                              <p class="card_expiration">expires</p>
-                              <p>29/10/2025</p>
-                         </div>
-                    </div>
-               </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Page</title>
+    <link rel="stylesheet" href="/css/style.min.css" />
+  </head>
+  <body>
+    <main class="main">
+      <div class="card_container">
+        <div class="payment_card">
+          <div class="card_details_one">
+            <img
+              src="/assets/20230829_130215.jpg"
+              alt="card-badge"
+              class="class_badge"
+            />
+            <p>visa</p>
           </div>
-          <form action="" class="payment_form">
-               <div class="form_section">
-                    <label for="card_number">card number</label>
-                    <div class="form_inputs ">
-                         <input type="number" name="" id="card_number" placeholder="" class="form_input_number card_holder_number">
-                         <input type="number" name="" id="card_number2" placeholder="" class="form_input_number">
-                         <input type="number" name="" id="card_number3" placeholder="" class="form_input_number">
-                         <input type="number" name="" id="card_number4" placeholder="" class="form_input_number">
-                    </div>
-               </div>
+          <div class="card_details_two">
+            <div>
+              <p class="card_owner_name">card holder</p>
+              <p>gloria ubah</p>
+            </div>
 
-               <div class="form_section">
-                    <label for="card_holder">card holder</label>
-                    <div class="">
-                         <input type="text" name="" id="card_holder" placeholder="" class="form_input_name">
-                    </div>
-               </div>
+            <div>
+              <p class="card_expiration">expires</p>
+              <p>29/10/2025</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form action="" class="payment_form">
+        <div class="form_section">
+          <label for="card_number">card number</label>
+          <div class="form_inputs">
+            <input
+              type="number"
+              name=""
+              id="card_number"
+              placeholder=""
+              class="form_input_number card_holder_number"
+            />
+            <input
+              type="number"
+              name=""
+              id="card_number2"
+              placeholder=""
+              class="form_input_number"
+            />
+            <input
+              type="number"
+              name=""
+              id="card_number3"
+              placeholder=""
+              class="form_input_number"
+            />
+            <input
+              type="number"
+              name=""
+              id="card_number4"
+              placeholder=""
+              class="form_input_number"
+            />
+          </div>
+        </div>
 
-               <div class="form_section form_section_three">
-                    <label for="card_expiration_date">expiration date</label>
-                    <div class="card_expiration_date_div">
-                         <input type="date" name="" id="card_expiration_date" placeholder="" class="form_input_number" >
-                         <input type="date" name="" id="card_expiration_date2" class="form_input_number">
-                         <div class="ccv">
-                              <label for="ccv">ccv</label>
-                              <input type="number" name="" id="ccv" placeholder="" class="form_input_number">
-                         </div>
-                    </div>
-               </div>
+        <div class="form_section">
+          <label for="card_holder">card holder</label>
+          <div class="">
+            <input
+              type="text"
+              name=""
+              id="card_holder"
+              placeholder=""
+              class="form_input_name"
+            />
+          </div>
+        </div>
 
-               <div>
-                    <button class="submit_btn">submit</button>
-               </div>
-               
-          </form>
-     </main>
+        <div class="form_section form_section_three">
+          <label for="card_expiration_date">expiration date</label>
+          <div class="card_expiration_date_div">
+            <select name="" id="" class="form_input_number year"></select>
+            <select name="" id="" class="form_input_number month">
+            </select>
+            <div class="ccv">
+              <label for="ccv">ccv</label>
+              <input
+                type="number"
+                name=""
+                id="ccv"
+                placeholder=""
+                class="form_input_number"
+              />
+            </div>
+          </div>
+        </div>
 
-     <script src="script.js"></script>
-</body>
+        <div>
+          <button class="submit_btn">submit</button>
+        </div>
+      </form>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
 </html>
