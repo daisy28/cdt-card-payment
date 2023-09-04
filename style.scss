@@ -8,18 +8,8 @@
     "Lucida Sans", Arial, sans-serif;
 }
 
-:root {
-  --dark_lilac: #b06dcf;
-  --light_lilac: #e6a4f4;
-  --lilac: #f1cdfa;
-  --light_purple: #e8dffa;
-  --dark_purple: #afa0f5;
-  --dark_pink: #b22b63;
-  --light_pink: #f75795;
-}
-
 body {
-  background: url("/assets/3d-background-concept_52683-34988.webp");
+  background: url("assets/3d-background-concept_52683-34988.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-blend-mode: luminosity;
