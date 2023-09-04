@@ -29,12 +29,15 @@
           <div class="card_details_two">
             <div>
               <p class="card_owner_name">card holder</p>
-              <p id="card_holder_name">gloria ubah</p>
+              <p id="card_holder_name"></p>
             </div>
 
             <div>
               <p class="card_expiration">expires</p>
-              <p>29/10/2025</p>
+              <p class="card_expiration_date">
+                <span class="card_expiration_month"></span>
+                <span class="card_expiration_year"></span>
+              </p>
             </div>
           </div>
         </div>
@@ -92,17 +95,20 @@
         </div>
 
         <div class="form_section form_section_three">
-          <label for="card_expiration_date">expiration date</label>
+          <div class="labels">
+            <label for="card_expiration_date">expiration date</label>
+            <label for="ccv">cvv</label>
+          </div>
+          
           <div class="card_expiration_date_div">
-            <select name="" id="" class="form_input_number year"></select>
-            <select name="" id="" class="form_input_number month">
+            <select name="" id="card_expiration_date" class="form_input_number month">
             </select>
-            <div class="ccv">
-              <label for="ccv">ccv</label>
+            <select name="" id="card_expiration_date" class="form_input_number year"></select>
+            <div class="cvv">
               <input
                 type="number"
                 name=""
-                id="ccv"
+                id="cvv"
                 placeholder=""
                 class="form_input_number"
               />
@@ -114,6 +120,8 @@
           <button class="submit_btn">submit</button>
         </div>
       </form>
+      <div class="alert_box">
+      </div>
     </main>
 
     <script src="script.js"></script>
