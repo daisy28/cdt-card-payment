@@ -6,6 +6,9 @@ const cardExpirationMonth = document.querySelector(".card_expiration_month");
 const cardExpirationYear = document.querySelector(".card_expiration_year");
 const cardHolderNameInput = document.querySelector("#card_holder");
 const cardHolderName = document.querySelector("#card_holder_name");
+const mssgOne = document.querySelector(".message1");
+const mssgTwo = document.querySelector(".message2");
+const mssgThree = document.querySelector(".message3");
 const month = document.querySelector(".month");
 const year = document.querySelector(".year");
 const cvvInput = document.querySelector("#cvv");
@@ -44,7 +47,7 @@ for (let i = yearStart; i < cardExpiryYear; i++) {
 }
 year.innerHTML = yearOption;
 
-// update the dom for month and year
+// update the card with selected month and year
 month.addEventListener("change", () => {
   cardExpirationMonth.innerHTML = `<span>${month.value}/</span>`;
 });
@@ -53,43 +56,45 @@ year.addEventListener("change", () => {
 });
 
 // Form validation
-form.addEventListener("keyup", () => {
-     
-  // automatically move curosr/focus to next input element
-  cardNumberInputs.forEach((input) => {
+const formValidation = () => {
+  form.addEventListener("keyup", () => {
+  // automatically move cursor/focus to next input element & validate input
+  cardNumberInputs.forEach((input, index) => {
     input.addEventListener("keydown", () => {
-      if (input.value.length > input.maxLength) {
+      if (input.value.length > input.maxLength && index < 3) {
         input.nextElementSibling.focus();
+      } else if (input.value.length > input.maxLength) {
+        input.blur();
       } else if (input.value.length < input.maxLength) {
         input.style.borderColor = `crimson`;
+        mssgOne.innerHTML = message("card number must be 16 digits");
       } else {
         input.style.borderColor = `green`;
+        mssgOne.innerHTML = message("✔️");
       }
     });
   });
 
   // Validate card issuer
   if (cardNumberInputs[0].value[0] === "2") {
-    cardIssuer.innerHTML = "Mastercard";
+    cardIssuer.setAttribute("src", "assets/MasterCard_Logo.svg.png");
   } else if (cardNumberInputs[0].value[0] === "3") {
-    cardIssuer.innerHTML = "American Express";
+    cardIssuer.setAttribute("src", "assets/images__3_-removebg-preview.png");
   } else if (cardNumberInputs[0].value[0] === "4") {
-    cardIssuer.innerHTML = "Visa";
+    cardIssuer.setAttribute("src", "assets/Visa_Inc._logo.svg.png");
   } else if (cardNumberInputs[0].value[0] === "5") {
-    cardIssuer.innerHTML = "Mastercard";
+    cardIssuer.setAttribute("src", "assets/MasterCard_Logo.svg.png");
   } else {
-    cardIssuer.innerHTML = "Verve";
-  }
-
-  if (cardNumberInputs[3].value.length > 3) {
-    cardNumberInputs[3].blur();
-  }
+    cardIssuer.setAttribute("src", "assets/images__1_-removebg-preview.png");
+  };
 
   if (cardHolderNameInput.value.length < 1) {
     cardHolderNameInput.style.borderColor = `crimson`;
+    mssgTwo.innerHTML = message("first and last name is required!");
   } else {
     cardHolderNameInput.style.borderColor = `green`;
-  }
+    mssgTwo.innerHTML = message("✔️");
+  };
 
   // update dom with card details
   let value = ``;
@@ -99,49 +104,62 @@ form.addEventListener("keyup", () => {
   cardNumber.innerHTML = value;
   cardHolderName.innerHTML = cardHolderNameInput.value;
 
+  // validate expiry month and year
+  if (!month.value) {
+    month.style.borderColor = "crimson";
+  } else {
+    month.style.borderColor = "green";
+  }
+  if (!year.value) {
+    year.style.borderColor = "crimson";
+  } else {
+    year.style.borderColor = "green";
+  }
+
+  // validate cvv
   if (cvvInput.value.length < 3) {
     cvvInput.style.borderColor = `crimson`;
+    mssgThree.innerHTML = message("ccv must not be less than 3");
   } else if (cvvInput.value.length > 4) {
     cvvInput.style.borderColor = `crimson`;
+    mssgThree.innerHTML = message("ccv must not be greater than 4");
   } else {
     cvvInput.style.borderColor = `green`;
+    mssgThree.innerHTML = message("✔️");
   }
-});
+  });
+}
+formValidation();
+const message = (message) => {
+  alert.style.display = "block";
+  return `<p>${message}</p>`;
+};
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const inputs = form.querySelectorAll("input");
-  inputs.forEach((input) => {
-    if (input.value === "") {
+  cardNumberInputs.forEach(input => {
+    if (input.value.length !== 4) {
       input.style.borderColor = `crimson`;
-      alert.style.display = "block";
-      alert.style.color = "crimson";
-      alert.innerHTML = `
-      <p>Your details are incorrect!</p>`;
+      alert.innerHTML = message("Enter card number");
+    } else if (cardHolderNameInput.value.length < 7) {
+      cardHolderNameInput.style.borderColor = `crimson`;
+      alert.innerHTML = message("Enter first name and last name");
+    } else if (!month.value) {
+      alert.innerHTML = message("Enter expiry month");
+    } else if (!year.value) {
+      alert.innerHTML = message("Enter expiry year");
     } else if (cvvInput.value.length < 3) {
-      alert.style.color = "crimson";
-      alert.innerHTML = `
-      <p>Your details are incorrect!</p>`;
+      alert.innerHTML = message("cvv invalid!");
     } else if (cvvInput.value.length > 4) {
-      alert.style.color = "crimson";
-      alert.innerHTML = `
-      <p>Your details are incorrect!</p>`;
-    } else if (month.value === "") {
-      month.style.borderColor = "crimson";
-      alert.innerHTML = `
-      <p>Your details are incorrect!</p>`;
-    } else if (year.value === "") {
-      year.style.borderColor = "crimson";
-      alert.innerHTML = `
-      <p>Your details are incorrect!</p>`;
+      alert.innerHTML = message("cvv invalid!");
     } else {
-      input.style.borderColor = `green`;
-      month.style.borderColor = "green";
-      year.style.borderColor = "green";
-      alert.style.display = "block";
+      alert.innerHTML = message("Your payment was successful! ✔️");
       alert.style.color = "green";
-      alert.innerHTML = `
-      <p>Your payment was successful!</p>`;
+      // setTimeout(() => {
+      //   form.querySelectorAll("input").forEach(input => { input.value = "" });
+      //   month.value = "";
+      //   year.value = "";
+      // }, 3000)
     }
   });
 });
