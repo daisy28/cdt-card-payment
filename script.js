@@ -60,12 +60,13 @@ const formValidation = () => {
   form.addEventListener("keyup", () => {
   // automatically move cursor/focus to next input element & validate input
   cardNumberInputs.forEach((input, index) => {
-    input.addEventListener("keydown", () => {
-      if (input.value.length > input.maxLength && index < 3) {
+    input.addEventListener("keydown", (e) => {
+      if (input.value.length > 3 && index < 3) {
         input.nextElementSibling.focus();
-      } else if (input.value.length > input.maxLength) {
+        e.preventDefault();
+      } else if (index === 3 && input.value.length > 3) {
         input.blur();
-      } else if (input.value.length < input.maxLength) {
+      } else if (input.value.length < 3) {
         input.style.borderColor = `crimson`;
         mssgOne.innerHTML = message("card number must be 16 digits");
       } else {
@@ -88,7 +89,7 @@ const formValidation = () => {
     cardIssuer.setAttribute("src", "assets/images__1_-removebg-preview.png");
   };
 
-  if (cardHolderNameInput.value.length < 1) {
+  if (cardHolderNameInput.value.length < 6) {
     cardHolderNameInput.style.borderColor = `crimson`;
     mssgTwo.innerHTML = message("first and last name is required!");
   } else {
@@ -149,17 +150,12 @@ form.addEventListener("submit", (e) => {
     } else if (!year.value) {
       alert.innerHTML = message("Enter expiry year");
     } else if (cvvInput.value.length < 3) {
-      alert.innerHTML = message("cvv invalid!");
+      alert.innerHTML = message("invalid cvv!");
     } else if (cvvInput.value.length > 4) {
-      alert.innerHTML = message("cvv invalid!");
+      alert.innerHTML = message("invalid cvv!");
     } else {
       alert.innerHTML = message("Your payment was successful! ✔️");
       alert.style.color = "green";
-      // setTimeout(() => {
-      //   form.querySelectorAll("input").forEach(input => { input.value = "" });
-      //   month.value = "";
-      //   year.value = "";
-      // }, 3000)
     }
   });
 });
