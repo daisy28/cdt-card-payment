@@ -91,6 +91,10 @@ body {
   gap: 0.5rem;
 }
 
+.card_details_two {
+  align-items: start;
+}
+
 .card_details_two p,
 .form_section label {
   font-size: 0.8rem;
@@ -117,6 +121,10 @@ body {
   backdrop-filter: blur(225px) saturate(50%);
   padding: 2rem;
   padding-top: 11rem;
+}
+
+label {
+  margin-bottom: .2rem;
 }
 
 .form_section {
@@ -218,5 +226,17 @@ input::-webkit-outer-spin-button {
 @media screen and (min-height: 740px) {
   body {
     height: 100vh;
+  }
+}
+
+@media screen and (min-width: 768px){
+  .main {
+    height: 768px;
+    max-width: 500px;
+  }
+
+  .card_container {
+    max-width: 350px;
+    top: 170px;
   }
 }
